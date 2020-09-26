@@ -1,0 +1,63 @@
+# This workflow will run tests using node and then publish a package to GitHub Packages when a release is created
+# For more information see: https://help.github.com/actions/language-and-framework-guides/publishing-nodejs-packages
+
+name: Deploy Blog
+
+on: 
+  push: # 当有新push时运行
+    branches: 
+      - master
+
+env:
+  TZ: Asia/Shanghai
+
+jobs:
+  build: # 一项叫做build的任务
+    runs-on: ubuntu-latest # 在最新版的Ubuntu系统下运行
+    
+    steps:
+    - name: Checkout Repository master branch # 将仓库内master分支的内容下载到工作目录
+      uses: actions/checkout@master # 脚本来自 https://github.com/actions/checkout
+      
+    - name: Use Node.js 10.x # 配置Node环境
+      uses: actions/setup-node@master # 配置脚本来自 https://github.com/actions/setup-node
+      with:
+        node-version: "10.x"
+    - name: Setup Hexo Dependencies
+      run: |
+        npm install hexo-cli -g
+        npm install
+    - name: Setup Deploy Private Key
+      env:
+        ACTION_DEPLOY_KEY: ${{ secrets.HEXO_DEPLOY_KEY }}  # 这里是上面anno-sc.github.io新增的公钥：HEXO_DEPLOY_KEY
+      run: |
+        # set up private key for deploy
+        mkdir -p ~/.ssh/
+        echo "$ACTION_DEPLOY_KEY" | tr -d '\r' > ~/.ssh/id_rsa # 配置秘钥
+        chmod 600 ~/.ssh/id_rsa
+        ssh-keyscan github.com >> ~/.ssh/known_hosts
+        
+    - name: Setup Git Infomation # set git infomation
+      run: |
+        git config --global user.name 'seqyuan' # 换成你自己的邮箱和名字
+        git config --global user.email 'ahworld07@gmail.com'
+        # 拉取主题代码
+        #rm -rf themes/*
+        #git clone git@github.com:seqyuan/hexo-theme-3-hexo.git themes/3-hexo
+        
+    - name: Clone and set blog # clone blog and set theme
+      run: |
+        git clone git@github.com:seqyuan/blog_anno-sc.git
+        mkdir -p blog_anno-sc/themes
+        git clone git@github.com:seqyuan/hexo-theme-3-hexo.git blog_anno-sc/themes/3-hexo
+        mkdir -p blog_anno-sc/source/
+        git clone git@github.com:anno-sc/blog_source.git blog_anno-sc/source/_posts/
+          
+    - name: Deploy
+      run: |
+        # publish
+        # 执行部署程序
+        
+        hexo clean
+        hexo generate
+        hexo deploy
