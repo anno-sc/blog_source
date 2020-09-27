@@ -56,13 +56,4 @@ jobs:
         # publish
         # 执行部署程序
         cd blog_anno-sc && hexo generate && hexo deploy
-        
-    - name: gitee syn
-      run: |
-        # 同步仓库到gitee
-        git clone git@github.com:anno-sc/blog_source.git github_blog_source
-        git clone git@gitee.com:anno-sc/blog_source.git gitee_blog_source
-        cp -r github_blog_source/* gitee_blog_source
-        cd gitee_blog_source && git add -A && git commit -m "syn github" && git push 
-
             
