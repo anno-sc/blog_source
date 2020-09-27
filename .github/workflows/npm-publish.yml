@@ -41,10 +41,7 @@ jobs:
       run: |
         git config --global user.name 'seqyuan' # 换成你自己的邮箱和名字
         git config --global user.email 'ahworld07@gmail.com'
-        # 拉取主题代码
-        #rm -rf themes/*
-        #git clone git@github.com:seqyuan/hexo-theme-3-hexo.git themes/3-hexo
-        
+       
     - name: Clone and set blog # clone blog and set theme
       run: |
         git clone git@github.com:seqyuan/blog_anno-sc.git
@@ -59,3 +56,13 @@ jobs:
         # publish
         # 执行部署程序
         cd blog_anno-sc && hexo generate && hexo deploy
+        
+    - name: gitee syn
+      run: |
+        # 同步仓库到gitee
+        git clone git@github.com:anno-sc/blog_source.git github_blog_source
+        git clone git@gitee.com:anno-sc/blog_source.git gitee_blog_source
+        cp -r github_blog_source/* gitee_blog_source
+        cd gitee_blog_source && git add -A && git commit -m "syn github" && git push 
+
+            
