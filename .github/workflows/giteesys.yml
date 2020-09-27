@@ -1,54 +1,19 @@
-# This workflow will run tests using node and then publish a package to GitHub Packages when a release is created
-# For more information see: https://help.github.com/actions/language-and-framework-guides/publishing-nodejs-packages
+name: 'GitHub Actions Mirror'
 
-name: gitee syn
-
-on: 
-  push: # 当有新push时运行
-    branches: 
-      - master
-
-env:
-  TZ: Asia/Shanghai
+on: [push, delete]
 
 jobs:
-  build: # 一项叫做build的任务
-    runs-on: ubuntu-latest # 在最新版的Ubuntu系统下运行
-    
+  mirror_to_gitee:
+    runs-on: ubuntu-latest
     steps:
-    - name: Checkout Repository master branch # 将仓库内master分支的内容下载到工作目录
-      uses: actions/checkout@master # 脚本来自 https://github.com/actions/checkout
-      
-    - name: Use Node.js 10.x # 配置Node环境
-      uses: actions/setup-node@master # 配置脚本来自 https://github.com/actions/setup-node
-      with:
-        node-version: "10.x"
-    - name: Setup Hexo Dependencies
-      run: |
-        npm install hexo-cli -g
-        npm install
-    - name: Setup Deploy Private Key
-      env:
-        ACTION_DEPLOY_KEY: ${{ secrets.HEXO_DEPLOY_KEY }}  # 这里是上面anno-sc.github.io新增的公钥：HEXO_DEPLOY_KEY
-      run: |
-        # set up private key for deploy
-        mkdir -p ~/.ssh/
-        echo "$ACTION_DEPLOY_KEY" | tr -d '\r' > ~/.ssh/id_rsa # 配置秘钥
-        chmod 600 ~/.ssh/id_rsa
-        ssh-keyscan github.com >> ~/.ssh/known_hosts
-        
-    - name: Setup Git Infomation # set git infomation
-      run: |
-        git config --global user.name 'seqyuan' # 换成你自己的邮箱和名字
-        git config --global user.email 'ahworld07@gmail.com'
-        
-    - name: gitee syn
-      run: |
-        # 同步仓库到gitee
-        git clone git@github.com:anno-sc/blog_source.git github_blog_source
-        git clone git@gitee.com:anno-sc/blog_source.git gitee_blog_source
-        echo clone_ok
-        cp -r github_blog_source/* gitee_blog_source
-        cd gitee_blog_source && git add -A && git commit -m "syn github" && git push 
+      - name: 'Checkout'
+        uses: actions/checkout@v1
+      - name: 'Mirror to gitee'
+        uses: pixta-dev/repository-mirroring-action@v1
+        with:
+          target_repo_url:
+            git@gitee.com:anno-sc/blog_source/.git
+          ssh_private_key:
+            ${{ secrets.GITEE_SYN_KEY }}
 
             
