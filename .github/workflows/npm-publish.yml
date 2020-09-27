@@ -52,7 +52,7 @@ jobs:
         git clone git@github.com:seqyuan/hexo-theme-3-hexo.git blog_anno-sc/themes/3-hexo
         mkdir -p blog_anno-sc/source/
         git clone git@github.com:anno-sc/blog_source.git blog_anno-sc/source/_posts/
-        echo anno-sc.com > blog_anno-sc/source/CNAME
+        echo http://anno-sc.com > blog_anno-sc/source/CNAME
           
     - name: Deploy
       run: |
