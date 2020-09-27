@@ -1,15 +1,16 @@
 ---
-title: 免疫细胞的lineage以及marker基因-DC｜NK
+title: DC和NK细胞的lineage及marker基因
 date: 2020-09-25 16:00
 author: Spartanzhao
 top: false
 cover: false
 toc: true
-summary: `NK`细胞核`DC`细胞的lineage以及相应的cell marker
+summary:
 tags: 
  - DC
  - NK
 categories: 免疫细胞细分
+
 ---
 
 > 在分析单细胞RNA的时候，最为重要的就是细胞命名。细胞聚类最重要的方法之一，就是利用marker基因在不同细胞中的表达差异，来对细胞命名。本文就介绍`NK`细胞核`DC`细胞的lineage以及相应的cell marker
