@@ -10,7 +10,6 @@ tags:
  - singlecell
  - 双细胞
 categories: QC
-
 ---
 
 * **module**: QC
@@ -19,6 +18,10 @@ categories: QC
 * **program**: doublets.py
 
 This script is for detect doublets from cellranger single cell gene expression raw matrix of one sample
+
+### 脚本仓库
+
+https://github.com/anno-sc/doublets
 
 ### 依赖的包
 依赖以下python包
@@ -54,10 +57,14 @@ This script is for detect doublets from cellranger single cell gene expression r
 `python3 doublets.py -i /path/sampledir -s sample1 -o /path/outDir`
 
 #### 输出介绍
-
-* `sample1_scrublet_doubletdetection_mark_doublets_barcodes.csv`：两种算法标记的每个barcode是否双细胞
-* sample1_scrublet_doublet_score_histogram.pdf：scrublet算法doublet打分值分布
-* sample1_scrublet_UMAP.pdf：scrublet算法双细胞在UMAP图上的分布
-* sample1_doubletdetection_convergence.pdf：doubletdetection中间文件
+* sample1_doubletdetection_UMAP.pdf
+* sample1_doubletdetection_convergence.pdf
+* sample1_doubletdetection_threshold.pdf
+* sample1_scrublet_UMAP.pdf
+* sample1_scrublet_doublet_score_histogram.pdf
+* sample1_scrublet_doubletdetection_doublets_ratio.csv
+>>双细胞比例统计，csv格式
+* sample1_scrublet_doubletdetection_mark_doublets_barcodes.csv
+>>两种算法标记的每个barcode是否双细胞，csv格式
 
 
