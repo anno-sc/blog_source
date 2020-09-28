@@ -54,6 +54,7 @@ https://github.com/anno-sc/doublets
 ##### 通过tools调用
 `/path/tools QC doublets -i /path/sampledir -s sample1 -o /path/outDir`
 ##### 直接使用程序
+
 `python3 doublets.py -i /path/sampledir -s sample1 -o /path/outDir`
 
 #### 输出介绍
