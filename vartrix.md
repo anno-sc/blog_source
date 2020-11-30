@@ -19,7 +19,7 @@ VarTrix是一款10XGenomics官方的软件用于从10XGenomics单细胞数据中
 * VarTrix可用于评估样品中单细胞的异质性
 
 ## VarTrix 流程图
-![](./figure/VarTrix/vartrix_1.png)
+![](https://gitee.com/anno-sc/blog_source/raw/master/figure/VarTrix/vartrix_1.png)
 
 ## github
 https://github.com/10XGenomics/vartrix
@@ -27,7 +27,7 @@ https://github.com/10XGenomics/vartrix
 ## 下载安装
 VarTrix使用rust语言编写，官方提供了编译后的[二进制文件](https://github.com/10XGenomics/vartrix/releases/tag/v1.1.16)，直接下载就能使用。
 
-![](./figure/VarTrix/vartrix_2.png)
+![](https://gitee.com/anno-sc/blog_source/raw/master/figure/VarTrix/vartrix_2.png)
 
 我们以linux版为例，下载后执行增加可执行权限。
 ```shell
@@ -215,7 +215,7 @@ Seurat.obj <- AddMetaData(object = Seurat.obj, metadata = gts)
 UMAPPlot(object = Seurat.obj, group.by = "snp_0001")
 ```
 
-![](./figure/VarTrix/vartrix_3.png)
+![](https://gitee.com/anno-sc/blog_source/raw/master/figure/VarTrix/vartrix_3.png)
 
 
 其中`blish_covid.seu.rds`来自下面这篇文章
