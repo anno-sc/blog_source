@@ -221,6 +221,6 @@ UMAPPlot(object = Seurat.obj, group.by = "snp_0001")
 其中`blish_covid.seu.rds`来自下面这篇文章
 > Wilk A J, Rustagi A, Zhao N Q, et al. A single-cell atlas of the peripheral immune response in patients with severe COVID-19[J]. Nature Medicine, 2020: 1-7.
 
-> `2020是不平凡的一年，在年钟来临之际，我们计划组织一次单细胞线上高级分析培训班，我们将以这篇文章的数据为基础线索进行高级分析的代码重现`，另外还有marker gene可视化应用代码的赠送。
+> `2020是不平凡的一年，在年终来临之际，我们计划组织一次单细胞线上高级分析培训班，希望能够给您提供一点参考，我们将以上面这篇文章的数据为基础线索进行高级分析的代码重现`，另外还有[marker gene可视化应用](https://b23.tv/8VQi5j)代码的赠送。
 
 
