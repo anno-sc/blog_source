@@ -29,7 +29,7 @@ VarTrix使用rust语言编写，官方提供了编译后的[二进制文件](htt
 
 ![](https://gitee.com/anno-sc/blog_source/raw/master/figure/VarTrix/vartrix_2.png)
 
-我们以linux版为例，下载后执行增加可执行权限。
+我们以linux版为例，下载后增加可执行权限。
 ```shell
 chmod +x vartrix_linux
 ```
